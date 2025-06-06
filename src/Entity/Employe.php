@@ -7,10 +7,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: EmployeRepository::class)]
-class Employe
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+class Employe implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -25,7 +29,7 @@ class Employe
     #[Assert\NotBlank]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     #[Assert\NotBlank]
     #[Assert\Email]
     private ?string $email = null;
@@ -37,6 +41,24 @@ class Employe
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     #[Assert\NotBlank]
     private ?\DateTimeInterface $dateArrivee = null;
+
+    /**
+     * @var string The hashed password
+     * La contrainte Regex valide que le mot de passe :
+     * * contient au moins un chiffre
+     * * contient au moins une lettre en minuscule
+     * * contient au moins une lettre en majuscule
+     * * contient au moins un caractère spécial qui n'est pas un espace
+     * * fait entre 8 et 32 caractères de long
+     */
+    #[Assert\NotCompromisedPassword()]
+    #[Assert\PasswordStrength(minScore: Assert\PasswordStrength::STRENGTH_STRONG)]
+    #[Assert\Regex('/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.*\s).{8,32}$/')]
+    #[ORM\Column(length: 255)]
+    private ?string $password = null;
+
+    #[ORM\Column(type: 'json')]
+    private array $roles = [];
 
     #[ORM\ManyToMany(targetEntity: Projet::class, mappedBy: 'employes')]
     private Collection $projets;
@@ -111,6 +133,34 @@ class Employe
         return $this;
     }
 
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): static
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // garantit que chaque employé a au moins ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Projet>
      */
@@ -136,5 +186,21 @@ class Employe
         }
 
         return $this;
+    }
+
+    public function eraseCredentials()
+    {
+        // Si tu stockes des données temporaires sensibles, efface-les ici
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
+    // Pour compatibilité avec les anciennes versions de Symfony
+    public function getUsername(): string
+    {
+        return (string) $this->email;
     }
 }
