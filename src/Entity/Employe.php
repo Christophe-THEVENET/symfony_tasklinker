@@ -35,11 +35,9 @@ class Employe implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\NotBlank]
     private ?string $statut = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    #[Assert\NotBlank]
     private ?\DateTimeInterface $dateArrivee = null;
 
     /**
