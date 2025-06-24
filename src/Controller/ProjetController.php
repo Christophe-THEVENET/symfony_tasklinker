@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Projet;
 use App\Form\ProjetType;
 
+#[Route('/projets')]
 class ProjetController extends AbstractController
 {
     public function __construct(
@@ -23,9 +24,12 @@ class ProjetController extends AbstractController
 
     }
 
-    #[Route('/', name: 'app_projets')]
+    #[Route('', name: 'app_projets')]
     public function projets(): Response
     {
+        /* if (!$this->getUser()) {
+            return $this->render('auth/welcome.html.twig');
+        } */
         $projets = $this->projetRepository->findBy([
             'archive' => false,
         ]);
@@ -35,7 +39,7 @@ class ProjetController extends AbstractController
         ]);
     }
 
-    #[Route('/projets/ajouter', name: 'app_projet_add')]
+    #[Route('/ajouter', name: 'app_projet_add')]
     public function ajouterProjet(Request $request): Response
     {  
         $projet = new Projet();
@@ -56,7 +60,7 @@ class ProjetController extends AbstractController
         ]);
     }
 
-    #[Route('/projets/{id}', name: 'app_projet')]
+    #[Route('/{id}', name: 'app_projet')]
     public function projet(int $id): Response
     {  
         $statuts = $this->statutRepository->findAll();
@@ -72,7 +76,7 @@ class ProjetController extends AbstractController
         ]);
     }
 
-    #[Route('/projets/{id}/archiver', name: 'app_projet_archive')]
+    #[Route('/{id}/archiver', name: 'app_projet_archive')]
     public function archiverProjet(int $id): Response
     {  
         $projet = $this->projetRepository->find($id);
@@ -88,7 +92,7 @@ class ProjetController extends AbstractController
     }
 
 
-    #[Route('/projets/{id}/editer', name: 'app_projet_edit')]
+    #[Route('/{id}/editer', name: 'app_projet_edit')]
     public function editerProjet(int $id, Request $request): Response
     {  
         $projet = $this->projetRepository->find($id);
