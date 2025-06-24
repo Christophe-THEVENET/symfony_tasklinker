@@ -33,9 +33,11 @@
                 </td>
                 <td>{{ employe.statut }}</td>
                 <td>
-                    {% for role in employe.roles %}
-                        <span>{{ role }}</span>{% if not loop.last %}, {% endif %}
-                    {% endfor %}
+                    {% if 'ROLE_ADMIN' in employe.roles %}
+                       <span class="role-admin"> chef de projet</span>
+                    {% else %}
+                        collaborateur
+                    {% endif %}
                 </td> 
                 <td>
                     <a class="button button-edit-team" href="{{ path('app_employe_edit', {id: employe.id}) }}">
