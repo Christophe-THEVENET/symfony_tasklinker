@@ -6,9 +6,7 @@
         <title>{% block title %}TaskLinker{% endblock %}</title>
         <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
         {# ********************** choices.js ****************************** #}
-        <!-- Include Choices CSS -->
-        <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
-        />
+        <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
         <script src='/js/select.js' defer></script>
         {# **************************************************************** #}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -18,7 +16,7 @@
     <body>
         <div id="main-container">
             <nav>
-                <a href="{{ path('app_projets') }}" id="logo">
+                <a href="{{ path(app.user ? 'app_projets' : 'app_home') }}" id="logo">
                     <img src="{{ asset('img/logo.png') }}" alt="Logo TaskLinker" />
                 </a>
                 <ul id="main-menu">
@@ -36,7 +34,13 @@
             </nav>
             <main>
                 <header>
-                    <div id="current-user"></div>
+                    <div id="current-user">
+                        {% if app.user %}
+                            <a href="{{ path('app_logout') }}" class="avatar">
+                               {{ app.user.prenom[:1]|upper }}{{ app.user.nom[:1]|upper }}
+                            </a>
+                        {% endif %}
+                    </div>
                     <div id="title-page">
                         {% block header %}{% endblock %}
                     </div>

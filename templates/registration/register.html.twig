@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'auth/base-logout.html.twig' %}
 
 {% block title %}Inscription{% endblock %}
 
@@ -15,6 +15,6 @@
             label: 'Password'
         }) }}
 
-        <button type="submit" class="btn">Inscrire</button>
+        <button type="submit" class="button button-submit">Inscrire</button>
     {{ form_end(registrationForm) }}
 {% endblock %}

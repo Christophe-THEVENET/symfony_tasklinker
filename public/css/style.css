@@ -432,6 +432,7 @@ form label {
 }
 
 button.button.button-submit {
+    transition: 0.3s ease-in-out;
     width: 100%;
     background: #1F5B50;
     border-radius: 10px;
@@ -445,6 +446,11 @@ button.button.button-submit {
     color: #ffffff;
     height: 70px;
     margin-top: 5px;
+}
+
+button.button.button-submit:hover {
+    background: #256b5e;
+   cursor: pointer;
 }
 
 form ul {
@@ -494,10 +500,6 @@ header.logout-header {
     left: 0;
 }
 
-/* ***************************************************************************************
-****************************************** AUTH ***************************************
-*************************************************************************************** */
-
 body.logout-page {
     background: url("/img/bg-logout.png") center center no-repeat;
     background-size: cover;
@@ -505,9 +507,6 @@ body.logout-page {
     align-items: center;
     justify-content: center;
 }
-
-
-
 
 div#main-content-logout {
     background: #4D8077;
@@ -587,6 +586,28 @@ div#main-content-logout .button {
     border: none;
     height: 1px;
     background: #fff;
+}
+
+div#main-content-logout form .button {
+    width: 100%;
+}
+
+.error-login {
+    text-align: center;
+    color: #E14343;
+    font-weight: 700;
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+div#current-user .avatar {
+    border: 1px solid #1C5B50;
+    color: #1C5B50;
+    text-decoration: none;
+    margin-left: auto;
+    background: #fff;
+    font-size: 18px;
+    font-weight: 700;
 }
 
 @media (max-width: 992px) {
