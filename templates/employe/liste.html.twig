@@ -13,6 +13,7 @@
         <tr>
             <th>Prénom, Nom</th>
             <th>Statut</th>
+            <th>Roles</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -31,6 +32,11 @@
                     </div>
                 </td>
                 <td>{{ employe.statut }}</td>
+                <td>
+                    {% for role in employe.roles %}
+                        <span>{{ role }}</span>{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td> 
                 <td>
                     <a class="button button-edit-team" href="{{ path('app_employe_edit', {id: employe.id}) }}">
                         Éditer

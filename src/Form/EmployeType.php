@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Employe;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -17,8 +18,19 @@ class EmployeType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('email', EmailType::class)
+            ->add('roles', ChoiceType::class, [
+                'choices'  => [
+                    'Admin' => 'ROLE_ADMIN',
+                    'User' => 'ROLE_USER',
+                ],
+                'multiple' => true,
+                'expanded' => false,
+                'label' => 'Rôles',
+                'attr' => ['class' => 'js-choice'],
+            ])
             ->add('statut')
             ->add('dateArrivee', DateType::class, ['widget' => 'single_text', 'label' => 'Date d\'entrée'])
+
         ;
     }
 

@@ -9,12 +9,14 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\EmployeRepository;
 use App\Form\EmployeType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class EmployeController extends AbstractController
 {
     public function __construct(
         private EmployeRepository $employeRepository,
         private EntityManagerInterface $entityManager,
+        private UserPasswordHasherInterface $passwordHasher,
     )
     {
 
@@ -72,6 +74,8 @@ class EmployeController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+
+
             $this->entityManager->flush();
             return $this->redirectToRoute('app_employes');
         }
