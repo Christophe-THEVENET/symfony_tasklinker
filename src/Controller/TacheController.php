@@ -2,16 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Projet;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProjetRepository;
-use App\Repository\StatutRepository;
 use App\Repository\TacheRepository;
 use App\Form\TacheType;
 use App\Entity\Tache;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class TacheController extends AbstractController
 {
@@ -26,10 +27,10 @@ class TacheController extends AbstractController
     }
 
     #[Route('/projets/{id}/taches/ajouter', name: 'app_tache_add')]
-    public function ajouterTache(int $id, Request $request): Response
+    #[IsGranted('access', 'projet')]
+    public function ajouterTache(Projet $projet, Request $request): Response
     {  
-        $projet = $this->projetRepository->find($id);
-
+       
         if(!$projet || $projet->isArchive()) {
             return $this->redirectToRoute('app_projets');
         }
@@ -52,10 +53,9 @@ class TacheController extends AbstractController
     }
 
     #[Route('/taches/{id}/supprimer', name: 'app_tache_delete')]
-    public function supprimerTache(int $id): Response
+    #[IsGranted('access', 'tache')]
+    public function supprimerTache(Tache $tache): Response
     {  
-        $tache = $this->tacheRepository->find($id);
-
         if(!$tache || $tache->getProjet()->isArchive()) {
             return $this->redirectToRoute('app_projets');
         }
@@ -68,10 +68,9 @@ class TacheController extends AbstractController
 
 
     #[Route('/taches/{id}', name: 'app_tache')]
-    public function tache(int $id, Request $request): Response
+    #[IsGranted('access', 'tache')]
+    public function tache(Tache $tache, Request $request): Response
     {  
-        $tache = $this->tacheRepository->find($id);
-
         if(!$tache || $tache->getProjet()->isArchive()) {
             return $this->redirectToRoute('app_projets');
         }

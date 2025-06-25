@@ -14,10 +14,12 @@
             <a href="{{ path('app_projet', {id: projet.id}) }}">
                 <h2>{{ projet.nom }}</h2>
             </a>
+            {% if is_granted('ROLE_ADMIN') %}
             <div class="card-project-icons">
                 <a href="{{ path('app_projet_edit', {id: projet.id}) }}"><i class="fa-solid fa-pen"></i></a>
                 <a href="{{ path('app_projet_archive', {id: projet.id}) }}"><i class="fa-solid fa-trash"></i></a>
             </div>
+            {% endif %}
         </article>
     {% endfor %}
 
@@ -31,3 +33,5 @@
     {% endif %}
 </div>
 {% endblock %}
+
+

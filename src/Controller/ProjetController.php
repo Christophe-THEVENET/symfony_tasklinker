@@ -28,12 +28,12 @@ class ProjetController extends AbstractController
     #[Route('', name: 'app_projets')]
     public function projets(): Response
     {
-        /* if (!$this->getUser()) {
-            return $this->render('auth/welcome.html.twig');
-        } */
-        $projets = $this->projetRepository->findBy([
-            'archive' => false,
-        ]);
+        $user = $this->getUser();
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $projets = $this->projetRepository->findBy(['archive' => false]);
+        } else {
+            $projets = $this->projetRepository->findNonArchivesByEmploye($user);
+        }
 
         return $this->render('projet/liste.html.twig', [
             'projets' => $projets,
@@ -63,10 +63,11 @@ class ProjetController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_projet')]
-    public function projet(int $id): Response
+    #[IsGranted('access', 'projet')]
+    public function projet(Projet $projet): Response
     {  
         $statuts = $this->statutRepository->findAll();
-        $projet = $this->projetRepository->find($id);
+        /* $projet = $this->projetRepository->find($id); */
 
         if(!$projet || $projet->isArchive()) {
             return $this->redirectToRoute('app_projets');
@@ -80,9 +81,8 @@ class ProjetController extends AbstractController
 
     #[Route('/{id}/archiver', name: 'app_projet_archive')]
     #[IsGranted('ROLE_ADMIN')]
-    public function archiverProjet(int $id): Response
+    public function archiverProjet(Projet $projet): Response
     {  
-        $projet = $this->projetRepository->find($id);
 
         if(!$projet || $projet->isArchive()) {
             return $this->redirectToRoute('app_projets');
@@ -97,9 +97,8 @@ class ProjetController extends AbstractController
 
     #[Route('/{id}/editer', name: 'app_projet_edit')]
     #[IsGranted('ROLE_ADMIN')]
-    public function editerProjet(int $id, Request $request): Response
+    public function editerProjet(Projet $projet, Request $request): Response
     {  
-        $projet = $this->projetRepository->find($id);
 
         if(!$projet || $projet->isArchive()) {
             return $this->redirectToRoute('app_projets');
