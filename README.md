@@ -70,3 +70,5 @@ Si vous le souhaitez, vous aurez la possibilité d’aller plus loin, en ajoutan
 `symfony server:start`
 
 url: localhost:8000
+
+Connectez-vous avec le compte admin crée dans les fixtures (voir les identifiants dans le fichier `src/DataFixtures/AppFixtures.php`)
