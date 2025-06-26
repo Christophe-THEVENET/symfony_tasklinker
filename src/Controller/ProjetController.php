@@ -11,7 +11,9 @@ use App\Repository\StatutRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Projet;
 use App\Form\ProjetType;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[Route('/projets')]
 class ProjetController extends AbstractController
 {
     public function __construct(
@@ -23,19 +25,23 @@ class ProjetController extends AbstractController
 
     }
 
-    #[Route('/', name: 'app_projets')]
+    #[Route('', name: 'app_projets')]
     public function projets(): Response
     {
-        $projets = $this->projetRepository->findBy([
-            'archive' => false,
-        ]);
+        $user = $this->getUser();
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $projets = $this->projetRepository->findBy(['archive' => false]);
+        } else {
+            $projets = $this->projetRepository->findNonArchivesByEmploye($user);
+        }
 
         return $this->render('projet/liste.html.twig', [
             'projets' => $projets,
         ]);
     }
 
-    #[Route('/projets/ajouter', name: 'app_projet_add')]
+    #[Route('/ajouter', name: 'app_projet_add')]
+    #[IsGranted('ROLE_ADMIN')]
     public function ajouterProjet(Request $request): Response
     {  
         $projet = new Projet();
@@ -56,11 +62,12 @@ class ProjetController extends AbstractController
         ]);
     }
 
-    #[Route('/projets/{id}', name: 'app_projet')]
-    public function projet(int $id): Response
+    #[Route('/{id}', name: 'app_projet')]
+    #[IsGranted('access', 'projet')]
+    public function projet(Projet $projet): Response
     {  
         $statuts = $this->statutRepository->findAll();
-        $projet = $this->projetRepository->find($id);
+        /* $projet = $this->projetRepository->find($id); */
 
         if(!$projet || $projet->isArchive()) {
             return $this->redirectToRoute('app_projets');
@@ -72,10 +79,10 @@ class ProjetController extends AbstractController
         ]);
     }
 
-    #[Route('/projets/{id}/archiver', name: 'app_projet_archive')]
-    public function archiverProjet(int $id): Response
+    #[Route('/{id}/archiver', name: 'app_projet_archive')]
+    #[IsGranted('ROLE_ADMIN')]
+    public function archiverProjet(Projet $projet): Response
     {  
-        $projet = $this->projetRepository->find($id);
 
         if(!$projet || $projet->isArchive()) {
             return $this->redirectToRoute('app_projets');
@@ -88,10 +95,10 @@ class ProjetController extends AbstractController
     }
 
 
-    #[Route('/projets/{id}/editer', name: 'app_projet_edit')]
-    public function editerProjet(int $id, Request $request): Response
+    #[Route('/{id}/editer', name: 'app_projet_edit')]
+    #[IsGranted('ROLE_ADMIN')]
+    public function editerProjet(Projet $projet, Request $request): Response
     {  
-        $projet = $this->projetRepository->find($id);
 
         if(!$projet || $projet->isArchive()) {
             return $this->redirectToRoute('app_projets');
