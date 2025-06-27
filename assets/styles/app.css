@@ -663,6 +663,8 @@ div#current-user .avatar {
 .checkbox {
     display: flex;
     align-items: center;
+
+    flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
    
@@ -676,4 +678,52 @@ div#current-user .avatar {
         background: white;
         cursor: pointer;
     }
+}
+
+.toggle-password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.toggle-password-container input[type="password"] {
+    width: 100%;
+    padding-right: 50px; /* espace pour le bouton */
+    box-sizing: border-box;
+}
+
+.toggle-password-button {
+    position: absolute;
+    right: 0px;
+    top: -25%;
+    transform: translateY(-50%);
+    background: #B1D89D;
+    color: #1C5B50;
+    border: none;
+    border-radius: 8px;
+    padding: 2px 6px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s, color 0.2s;
+    box-shadow: 0 2px 6px #0001;
+    z-index: 2;
+    margin: 0;
+}
+
+.toggle-password-button:hover,
+.toggle-password-button:focus {
+    background: #256b5e;
+    color: #fff;
+}
+
+.toggle-password-icon {
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 0.5em;
+    fill: currentColor;
 }
