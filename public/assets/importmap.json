@@ -1,0 +1,15 @@
+{
+    "imports": {
+        "app": "/assets/app-f23bdfde2fa064709cca9a38b9832d2d.js",
+        "/assets/bootstrap.js": "/assets/bootstrap-c0639e1fe307f5179121eb95597eeb72.js",
+        "@hotwired/stimulus": "https://cdn.jsdelivr.net/npm/@hotwired/stimulus@3.2.2/+esm",
+        "@symfony/stimulus-bundle": "/assets/@symfony/stimulus-bundle/loader-e1ee9ace0562f2e6a52301e4ccc8627d.js",
+        "/assets/@symfony/stimulus-bundle/controllers.js": "/assets/@symfony/stimulus-bundle/controllers-edb0fb16283484e97cbec98e14e8cacb.js",
+        "/assets/@symfony/ux-live-component/live_controller.js": "/assets/@symfony/ux-live-component/live_controller-2eaed567fb7a1d38c2a8d5b8b2f12bd6.js",
+        "/assets/@symfony/ux-toggle-password/controller.js": "/assets/@symfony/ux-toggle-password/controller-0e77d74a274125ee87a4566635bfff6e.js",
+        "/assets/@symfony/ux-turbo/turbo_controller.js": "/assets/@symfony/ux-turbo/turbo_controller-ce5e32dafdec0b7752f02e3e2cb25751.js",
+        "/assets/controllers/hello_controller.js": "/assets/controllers/hello_controller-55882fcad241d2bea50276ea485583bc.js",
+        "@hotwired/turbo": "https://cdn.jsdelivr.net/npm/@hotwired/turbo@8.0.13/+esm",
+        "@symfony/ux-live-component": "/assets/@symfony/ux-live-component/live_controller-2eaed567fb7a1d38c2a8d5b8b2f12bd6.js"
+    }
+}
