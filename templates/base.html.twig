@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{{ asset('styles/app.css') }}"/>
         {# ********************** choices.js ****************************** #}
         <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
+        <link rel="stylesheet" href="{{ asset('@symfony/ux-toggle-password/dist/style.min.css') }}">
         <script src='/js/select.js' defer></script>
         {# **************************************************************** #}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -23,8 +24,10 @@
                 <ul id="main-menu">
                     <li class="{% if not (app.request.get('_route') starts with 'app_employe') %}active{% endif %}">
                         <a href="{{ path('app_projets') }}">
-                            <i class="fa-solid fa-list-check"></i> Projets
+                            <i class="fa-solid fa-list-check" ></i> Projets
                         </a>
+
+                       
                     </li>
                     {% if is_granted('ROLE_ADMIN') %}
                         <li class="{% if app.request.get('_route') starts with 'app_employe' %}active{% endif %}">
