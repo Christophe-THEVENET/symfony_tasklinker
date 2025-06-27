@@ -1,0 +1,21 @@
+{% extends 'auth/base-logout.html.twig' %}
+
+{% block body %}
+    <h1>Authentification à deux facteurs</h1>
+    {% if authError is defined and authError %}
+        <div class="alert alert-danger">{{ authError.messageKey|trans(authError.messageData, 'security') }}</div>
+    {% endif %}
+    <form method="post" class="twofa-form" action="{{ checkPathUrl is defined and checkPathUrl ? checkPathUrl : (checkPathRoute is defined and checkPathRoute ? path(checkPathRoute) : '') }}">
+        <label for="_auth_code">Code reçu par email</label>
+        <input type="text" id="_auth_code" name="{{ authCodeParameterName|default('_auth_code') }}" required autofocus autocomplete="one-time-code" inputmode="numeric" pattern="[0-9]*">
+        {% if displayTrustedOption is defined and displayTrustedOption %}
+            <div><label for="_trusted"><input id="_trusted" type="checkbox" name="{{ trustedParameterName }}" /> Se souvenir de moi</label></div>
+        {% endif %}
+        {% if isCsrfProtectionEnabled is defined and isCsrfProtectionEnabled %}
+            <input type="hidden" name="{{ csrfParameterName }}" value="{{ csrf_token(csrfTokenId) }}">
+        {% endif %}
+        <button type="submit" class="button button-submit">Valider</button>
+    </form>
+    <p class="cancel"><a href="{{ logoutPath|default(path('app_logout')) }}">Annuler</a></p>
+{% endblock %}
+

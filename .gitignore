@@ -19,3 +19,6 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 memo.md
+###> symfony/asset-mapper ###
+/public/assets/
+###< symfony/asset-mapper ###
