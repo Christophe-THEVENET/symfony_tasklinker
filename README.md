@@ -28,7 +28,9 @@ Si vous le souhaitez, vous aurez la possibilité d’aller plus loin, en ajoutan
         seuls les chefs de projet peuvent maintenant modifier les fiches Employés ;
     * les employés ne peuvent voir que les projets auxquels ils ont accès (à l’exception des chefs de projet qui peuvent tous les voir) ;
     * les utilisateurs non connectés ne peuvent accéder qu’à la page de connexion et d’inscription;
-    * Système d'authentification à 2 facteurs pour la connexion (option)
+    * Système d'authentification à 2 facteurs pour la connexion
+    * Symfony UX Turbo pour améliorer l'expérience utilisateur;
+    * Symfony UX Toggle Password pour afficher/masquer les mots de passe dans les formulaires;
 
 
 ## Prérequis
