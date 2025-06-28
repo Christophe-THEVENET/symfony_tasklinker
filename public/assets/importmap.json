@@ -1,15 +1,17 @@
 {
     "imports": {
-        "app": "/assets/app-f23bdfde2fa064709cca9a38b9832d2d.js",
-        "/assets/bootstrap.js": "/assets/bootstrap-c0639e1fe307f5179121eb95597eeb72.js",
+        "app": "/assets/app-a7b15e6e4a21214ff99aede2d73b700b.js",
+        "/assets/bootstrap.js": "/assets/bootstrap-61c3bf5c7a2ad1d047db9fcb060165a0.js",
         "@hotwired/stimulus": "https://cdn.jsdelivr.net/npm/@hotwired/stimulus@3.2.2/+esm",
         "@symfony/stimulus-bundle": "/assets/@symfony/stimulus-bundle/loader-e1ee9ace0562f2e6a52301e4ccc8627d.js",
-        "/assets/@symfony/stimulus-bundle/controllers.js": "/assets/@symfony/stimulus-bundle/controllers-edb0fb16283484e97cbec98e14e8cacb.js",
+        "/assets/@symfony/stimulus-bundle/controllers.js": "/assets/@symfony/stimulus-bundle/controllers-1c5e8b89cc32a6829a73ca063300ec8c.js",
         "/assets/@symfony/ux-live-component/live_controller.js": "/assets/@symfony/ux-live-component/live_controller-2eaed567fb7a1d38c2a8d5b8b2f12bd6.js",
         "/assets/@symfony/ux-toggle-password/controller.js": "/assets/@symfony/ux-toggle-password/controller-0e77d74a274125ee87a4566635bfff6e.js",
         "/assets/@symfony/ux-turbo/turbo_controller.js": "/assets/@symfony/ux-turbo/turbo_controller-ce5e32dafdec0b7752f02e3e2cb25751.js",
-        "/assets/controllers/hello_controller.js": "/assets/controllers/hello_controller-55882fcad241d2bea50276ea485583bc.js",
+        "/assets/controllers/choices_controller.js": "/assets/controllers/choices_controller-21d2b4e72e440c665ca47361d089c747.js",
+        "/assets/controllers/hello_controller.js": "/assets/controllers/hello_controller-87b6385829902356204e988334af9bf5.js",
         "@hotwired/turbo": "https://cdn.jsdelivr.net/npm/@hotwired/turbo@8.0.13/+esm",
-        "@symfony/ux-live-component": "/assets/@symfony/ux-live-component/live_controller-2eaed567fb7a1d38c2a8d5b8b2f12bd6.js"
+        "@symfony/ux-live-component": "/assets/@symfony/ux-live-component/live_controller-2eaed567fb7a1d38c2a8d5b8b2f12bd6.js",
+        "choices.js": "https://cdn.jsdelivr.net/npm/choices.js@11.1.0/+esm"
     }
 }

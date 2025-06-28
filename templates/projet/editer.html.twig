@@ -11,7 +11,10 @@
 {{ form_start(form) }}
 
 {{ form_row(form.nom) }}
+
+<div data-controller="choices">
 {{ form_row(form.employes) }}
+</div>
 <br>
 <button class="button button-submit">Modifier</button>
 {{ form_end(form) }}

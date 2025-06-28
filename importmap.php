@@ -30,4 +30,7 @@ return [
     '@symfony/ux-live-component' => [
         'path' => '@symfony/ux-live-component/live_controller.js',
     ],
+    'choices.js' => [
+        'url' => 'https://cdn.jsdelivr.net/npm/choices.js@11.1.0/+esm',
+    ],
 ];

@@ -26,7 +26,7 @@ class EmployeType extends AbstractType
                 'multiple' => true,
                 'expanded' => false,
                 'label' => 'Rôles',
-                'attr' => ['class' => 'js-choice'],
+                
             ])
             ->add('statut')
             ->add('dateArrivee', DateType::class, ['widget' => 'single_text', 'label' => 'Date d\'entrée'])

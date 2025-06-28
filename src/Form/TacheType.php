@@ -33,6 +33,9 @@ class TacheType extends AbstractType
                 'choices' => $options['projet']->getEmployes(),
                 'label' => 'Membre',
                 'required' => false,
+                'attr' => [
+                    'data-choices-target' => 'select'
+                ]
             ])
         ;
     }
