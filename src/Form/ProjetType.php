@@ -24,7 +24,9 @@ class ProjetType extends AbstractType
             'multiple' => true,
             'label' => 'Inviter des membres',
             'required' => false,
-            'attr' => ['class' => 'js-choice'],
+            'attr' => [
+                'data-choices-target' => 'select'
+            ]
             ])
         ;
     }

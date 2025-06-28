@@ -16,7 +16,8 @@
     {{ form_row(form.deadline) }}
     {{ form_row(form.statut) }}
 </div>
-{{ form_row(form.employe) }}
+
+    {{ form_row(form.employe) }}
 <br>
 <button class="button button-submit">Modifier</button>
 <a href="{{ path('app_tache_delete', {id: tache.id}) }}" class="delete-task">Supprimer la tâche</a>
