@@ -63,7 +63,9 @@ Si vous le souhaitez, vous aurez la possibilité d’aller plus loin, en ajoutan
 
 `php bin/console doctrine:migrations:migrate`
 
-`php bin/console doctrine:fixtures:load`    
+`php bin/console doctrine:fixtures:load` 
+
+`php bin/console asset-map:compile`
 
 
 ## Utilisation
