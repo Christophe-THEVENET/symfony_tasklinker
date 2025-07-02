@@ -49,7 +49,7 @@ Si vous le souhaitez, vous aurez la possibilité d’aller plus loin, en ajoutan
 ## Installation
 
     
-  `git clone https://github.com/Christophe-THEVENET/tasklinker.git`
+  `git clone https://github.com/Christophe-THEVENET/symfony_tasklinker.git`
 
 `cd tasklinker/`
 
