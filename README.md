@@ -49,15 +49,15 @@ Si vous le souhaitez, vous aurez la possibilité d’aller plus loin, en ajoutan
 ## Installation
 
     
-  `git clone https://github.com/Christophe-THEVENET/tasklinker.git`
+  `git clone https://github.com/Christophe-THEVENET/symfony_tasklinker.git`
 
-`cd tasklinker/`
+`cd symfony_tasklinker/`
 
 `composer install`    
 
 `cp .env .env.local` > configurer le DNS de la base de données
 
-`php bin/console c:c `
+`php bin/console cache:clear`
 
 `php bin/console doctrine:database:create`
 
@@ -73,6 +73,6 @@ Si vous le souhaitez, vous aurez la possibilité d’aller plus loin, en ajoutan
 
 `symfony server:start`
 
-url: localhost:8000
+url: localhost:8000 
 
 Connectez-vous avec le compte admin crée dans les fixtures (voir les identifiants dans le fichier `src/DataFixtures/AppFixtures.php`)
